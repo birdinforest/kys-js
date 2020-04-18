@@ -1,2 +1,5 @@
 release-builds
 game
+build
+node_modules
+package-lock.json
