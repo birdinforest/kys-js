@@ -217,10 +217,11 @@
             var tx = db.transaction("jy", "readwrite");
             var store = tx.objectStore("jy");
             var index = store.index("dataIndex");
-            var getdata = store.get(key);
-            getdata.onsuccess = function() {
-                if (getdata.result) {
-                    callback(getdata.result.data);
+            var openCursor = store.openCursor(key);
+            openCursor.onsuccess = function() {
+                var cursor = openCursor.result;
+                if (cursor) {
+                    callback(cursor.value.data);
                 }
                 else {
                     next();
